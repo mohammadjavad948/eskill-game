@@ -22,7 +22,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
             copy.push({
                 top: getRandomArbitrary(-5, 0),
                 right: getRandomArbitrary(2, 98),
-                rotate: getRandomArbitrary(-45, 45)
+                rotate: 0
             })
         }
 
