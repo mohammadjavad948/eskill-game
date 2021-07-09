@@ -8,7 +8,7 @@ import UserAgent from "./component/UserAgent";
 
 export default function Container(){
 
-    const {agents, randomAgent, moveEntity, bullets, agentShoot, userRight, userShoot} = useAgentStore();
+    const {agents, randomAgent, moveEntity, bullets, agentShoot, userRight, userShoot, moveUser} = useAgentStore();
 
     useEffect(() => {
 
@@ -33,10 +33,17 @@ export default function Container(){
     function event(e: any){
 
         if (e.code === 'Space'){
-
-            console.log('space')
             userShoot();
         }
+
+        if (e.code === 'ArrowRight'){
+            moveUser(-1);
+        }
+
+        if (e.code === 'ArrowLeft'){
+            moveUser(1);
+        }
+
     }
 
     return (

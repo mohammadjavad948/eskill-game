@@ -9,6 +9,7 @@ interface AgentStore{
     agentShoot: () => void
     userShoot: () => void
     userRight: number
+    moveUser: (number: number) => void
 }
 
 interface Bullet{
@@ -96,5 +97,9 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         })
 
         set({bullets: copy})
+    },
+    moveUser: (move: number) => {
+
+        set({userRight: get().userRight + move})
     }
 }))
