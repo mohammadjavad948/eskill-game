@@ -14,6 +14,7 @@ export default function Bullet(props: Props){
             backgroundColor: 'white',
             top: `${props.top}%`,
             right: `${props.right}%`,
+            borderRadius: '8px'
         }} />
     )
 }
