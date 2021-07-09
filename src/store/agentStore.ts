@@ -7,6 +7,8 @@ interface AgentStore{
     moveEntity: () => void
     bullets: Bullet[]
     agentShoot: () => void
+    userShoot: () => void
+    userRight: number
 }
 
 interface Bullet{
@@ -24,6 +26,7 @@ interface Agent{
 export const useAgentStore = create<AgentStore>((set, get) => ({
     agents: [],
     bullets: [],
+    userRight: 50,
     randomAgent: (count: number) => {
         let copy = [...get().agents];
 
@@ -82,5 +85,14 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         }
 
         set({bullets: copy})
+    },
+    userShoot: () => {
+        let copy =  [...get().bullets];
+
+        copy.push({
+            top: 1,
+            right: 1,
+            up: true
+        })
     }
 }))

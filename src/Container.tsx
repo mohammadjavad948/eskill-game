@@ -4,10 +4,11 @@ import Agent from "./component/Agent";
 import {useEffect} from "react";
 import {useAgentStore} from "./store/agentStore";
 import Bullet from "./component/Bullet";
+import UserAgent from "./component/UserAgent";
 
 export default function Container(){
 
-    const {agents, randomAgent, moveEntity, bullets, agentShoot} = useAgentStore();
+    const {agents, randomAgent, moveEntity, bullets, agentShoot, userRight} = useAgentStore();
 
     useEffect(() => {
 
@@ -36,6 +37,7 @@ export default function Container(){
             {bullets.map((el, i) => {
                 return <Bullet {...el} key={i} />
             })}
+            <UserAgent right={userRight} />
         </div>
     )
 }
