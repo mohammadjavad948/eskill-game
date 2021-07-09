@@ -50,6 +50,21 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
             i++;
         }
 
-        set({agents: copy})
+
+        let bcopy = [...get().bullets];
+
+        let bi = 0;
+
+        for (let ag of bcopy){
+            bcopy[bi].top = ag.top + 0.08
+
+            if (ag.top > 105){
+                bcopy.splice(bi, 1);
+            }
+
+            bi++;
+        }
+
+        set({agents: copy, bullets: bcopy})
     }
 }))
