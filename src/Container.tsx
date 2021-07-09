@@ -8,7 +8,7 @@ import UserAgent from "./component/UserAgent";
 
 export default function Container(){
 
-    const {agents, randomAgent, moveEntity, bullets, agentShoot, userRight} = useAgentStore();
+    const {agents, randomAgent, moveEntity, bullets, agentShoot, userRight, userShoot} = useAgentStore();
 
     useEffect(() => {
 
@@ -26,7 +26,18 @@ export default function Container(){
             moveEntity();
         }, 5)
 
+        document.addEventListener('keydown', event)
+
     }, [])
+
+    function event(e: any){
+
+        if (e.code === 'Space'){
+
+            console.log('space')
+            userShoot();
+        }
+    }
 
     return (
         <div className={style.main}>

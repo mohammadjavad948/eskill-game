@@ -32,7 +32,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
 
         for (let i = 0; i < count; i++){
             copy.push({
-                top: getRandomArbitrary(-5, 0),
+                top: getRandomArbitrary(-1, 0),
                 right: getRandomArbitrary(2, 98),
                 rotate: 0
             })
@@ -63,7 +63,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         for (let ag of bcopy){
             bcopy[bi].top += ag.up ? -0.15 : 0.15
 
-            if (ag.top > 105){
+            if (ag.top > 105 || ag.top < -5){
                 bcopy.splice(bi, 1);
             }
 
@@ -90,9 +90,11 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         let copy =  [...get().bullets];
 
         copy.push({
-            top: 1,
-            right: 1,
+            top: 89,
+            right: get().userRight + 1,
             up: true
         })
+
+        set({bullets: copy})
     }
 }))
