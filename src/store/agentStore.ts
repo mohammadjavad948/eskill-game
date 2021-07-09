@@ -4,7 +4,13 @@ import {getRandomArbitrary} from "./random";
 interface AgentStore{
     agents: Agent[]
     randomAgent: (count: number) => void
-    moveAgent: () => void
+    moveEntity: () => void
+    bullets: Bullet[]
+}
+
+interface Bullet{
+    top: number
+    right: number
 }
 
 interface Agent{
@@ -15,6 +21,7 @@ interface Agent{
 
 export const useAgentStore = create<AgentStore>((set, get) => ({
     agents: [],
+    bullets: [],
     randomAgent: (count: number) => {
         let copy = [...get().agents];
 
@@ -28,7 +35,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
 
         set({agents: copy})
     },
-    moveAgent: () => {
+    moveEntity: () => {
         let copy = [...get().agents];
 
         let i = 0;

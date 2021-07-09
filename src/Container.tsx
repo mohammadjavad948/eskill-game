@@ -6,7 +6,7 @@ import {useAgentStore} from "./store/agentStore";
 
 export default function Container(){
 
-    const {agents, randomAgent, moveAgent} = useAgentStore();
+    const {agents, randomAgent, moveEntity} = useAgentStore();
 
     useEffect(() => {
 
@@ -17,7 +17,7 @@ export default function Container(){
         }, 3000);
 
         setInterval(() => {
-            moveAgent();
+            moveEntity();
         }, 5)
 
     }, [])
