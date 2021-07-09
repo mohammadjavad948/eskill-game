@@ -44,16 +44,34 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
     moveEntity: () => {
         let copy = [...get().agents];
 
+        const userLocation = get().userRight;
+
         let i = 0;
+
+        let flag = false;
 
         for (let ag of copy){
             copy[i].top = ag.top + 0.05
+
+            if (ag.top > 85 && (ag.right > userLocation && ag.right < userLocation + 5)){
+                flag = true;
+            }
 
             if (ag.top > 105){
                 copy.splice(i, 1);
             }
 
             i++;
+        }
+
+        if (flag){
+            set({
+                userRight: 49,
+                bullets: [],
+                agents: []
+            })
+
+            return null
         }
 
 
