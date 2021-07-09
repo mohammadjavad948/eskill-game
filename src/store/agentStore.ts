@@ -36,7 +36,11 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         for (let ag of copy){
             copy[i].top = ag.top + 0.05
 
-            i++
+            if (ag.top > 105){
+                copy.splice(i, 1);
+            } else {
+                i++
+            }
         }
 
         set({agents: copy})
