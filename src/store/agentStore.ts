@@ -82,11 +82,25 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         for (let ag of bcopy){
             bcopy[bi].top += ag.up ? -0.15 : 0.15
 
+            if (ag.top > 85 && (ag.right > userLocation && ag.right < userLocation + 5)){
+                flag = true;
+            }
+
             if (ag.top > 105 || ag.top < -5){
                 bcopy.splice(bi, 1);
             }
 
             bi++;
+        }
+
+        if (flag){
+            set({
+                userRight: 49,
+                bullets: [],
+                agents: []
+            })
+
+            return null
         }
 
         set({agents: copy, bullets: bcopy})
