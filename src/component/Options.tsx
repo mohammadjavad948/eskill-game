@@ -1,12 +1,11 @@
 import style from './options.module.css';
+import pause from './Pause.svg';
 
 export default function Options(){
 
     return (
         <div className={style.main}>
-            <div>
-                stop
-            </div>
+            <img src={pause} width={40} alt=""/>
         </div>
     )
 }
