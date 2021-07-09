@@ -3,10 +3,11 @@ import Options from "./component/Options";
 import Agent from "./component/Agent";
 import {useEffect} from "react";
 import {useAgentStore} from "./store/agentStore";
+import Bullet from "./component/Bullet";
 
 export default function Container(){
 
-    const {agents, randomAgent, moveEntity} = useAgentStore();
+    const {agents, randomAgent, moveEntity, bullets, agentShoot} = useAgentStore();
 
     useEffect(() => {
 
@@ -15,6 +16,10 @@ export default function Container(){
             randomAgent(5);
 
         }, 3000);
+
+        setInterval(() => {
+            agentShoot()
+        }, 2000)
 
         setInterval(() => {
             moveEntity();
@@ -27,6 +32,9 @@ export default function Container(){
             <Options />
             {agents.map((el, i) => {
                 return <Agent {...el} key={i} />
+            })}
+            {bullets.map((el, i) => {
+                return <Bullet {...el} key={i} />
             })}
         </div>
     )

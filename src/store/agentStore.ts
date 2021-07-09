@@ -57,7 +57,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         let bi = 0;
 
         for (let ag of bcopy){
-            bcopy[bi].top = ag.top + 0.08
+            bcopy[bi].top = ag.top + 0.1
 
             if (ag.top > 105){
                 bcopy.splice(bi, 1);
@@ -69,6 +69,16 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         set({agents: copy, bullets: bcopy})
     },
     agentShoot: () => {
+        let copy =  [...get().bullets];
+        let agents = [...get().agents];
 
+        for (let ag of agents){
+            copy.push({
+                top: ag.top + 1,
+                right: ag.right + 1
+            })
+        }
+
+        set({bullets: copy})
     }
 }))
