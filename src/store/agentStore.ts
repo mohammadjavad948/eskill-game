@@ -26,7 +26,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
     randomAgent: (count: number) => {
         let copy = [...get().agents];
 
-        for (let i = 0; i <= count; i++){
+        for (let i = 0; i < count; i++){
             copy.push({
                 top: getRandomArbitrary(-5, 0),
                 right: getRandomArbitrary(2, 98),
@@ -57,7 +57,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         let bi = 0;
 
         for (let ag of bcopy){
-            bcopy[bi].top = ag.top + 0.1
+            bcopy[bi].top = ag.top + 0.15
 
             if (ag.top > 105){
                 bcopy.splice(bi, 1);

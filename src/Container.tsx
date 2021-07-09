@@ -13,13 +13,13 @@ export default function Container(){
 
         setInterval(() => {
 
-            randomAgent(5);
+            randomAgent(2);
 
         }, 3000);
 
         setInterval(() => {
             agentShoot()
-        }, 2000)
+        }, 5000)
 
         setInterval(() => {
             moveEntity();
