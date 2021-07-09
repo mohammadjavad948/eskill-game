@@ -10,6 +10,7 @@ interface AgentStore{
     userShoot: () => void
     userRight: number
     moveUser: (number: number) => void
+    score: number
 }
 
 interface Bullet{
@@ -28,6 +29,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
     agents: [],
     bullets: [],
     userRight: 50,
+    score: 0,
     randomAgent: (count: number) => {
         let copy = [...get().agents];
 
@@ -46,12 +48,22 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
 
         const userLocation = get().userRight;
 
+        const upBullet = get().bullets.filter((el) => el.up);
+
         let i = 0;
 
         let flag = false;
 
         for (let ag of copy){
             copy[i].top = ag.top + 0.05
+
+            for (let bul of upBullet){
+                 if ((ag.top >= bul.top) && (ag.right < bul.right && ag.right + 5 > bul.right)){
+                     copy.splice(i, 1);
+
+                     set({score: get().score + 5})
+                 }
+             }
 
             if (ag.top > 85 && (ag.right > userLocation && ag.right < userLocation + 5)){
                 flag = true;
@@ -68,7 +80,8 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
             set({
                 userRight: 49,
                 bullets: [],
-                agents: []
+                agents: [],
+                score: 0
             })
 
             return null
@@ -82,7 +95,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         for (let ag of bcopy){
             bcopy[bi].top += ag.up ? -0.15 : 0.15
 
-            if (ag.top > 85 && (ag.right > userLocation && ag.right < userLocation + 5)){
+            if (ag.top > 85 && (ag.right > userLocation && ag.right < userLocation + 5) && !ag.up){
                 flag = true;
             }
 
@@ -97,7 +110,8 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
             set({
                 userRight: 49,
                 bullets: [],
-                agents: []
+                agents: [],
+                score: 0
             })
 
             return null
