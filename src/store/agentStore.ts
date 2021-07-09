@@ -12,6 +12,7 @@ interface AgentStore{
 interface Bullet{
     top: number
     right: number
+    up: boolean
 }
 
 interface Agent{
@@ -57,7 +58,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         let bi = 0;
 
         for (let ag of bcopy){
-            bcopy[bi].top = ag.top + 0.15
+            bcopy[bi].top += ag.up ? -0.15 : 0.15
 
             if (ag.top > 105){
                 bcopy.splice(bi, 1);
@@ -75,7 +76,8 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         for (let ag of agents){
             copy.push({
                 top: ag.top + 1,
-                right: ag.right + 1
+                right: ag.right + 1,
+                up: false
             })
         }
 
