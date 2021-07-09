@@ -6,6 +6,7 @@ interface AgentStore{
     randomAgent: (count: number) => void
     moveEntity: () => void
     bullets: Bullet[]
+    agentShoot: () => void
 }
 
 interface Bullet{
@@ -66,5 +67,8 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
         }
 
         set({agents: copy, bullets: bcopy})
+    },
+    agentShoot: () => {
+
     }
 }))
